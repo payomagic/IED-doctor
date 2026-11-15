@@ -1,7 +1,7 @@
 # IED Doctor 0.8.0
 
-Read-only IEC 61850 inspection tool: MMS, GOOSE, Sampled Values, SCD validation, comparison, reports and an IED simulator. Runs in the browser and is served by a small local Python program. Nothing to install apart from Python.
-
+Read-only IEC 61850 inspection tool: MMS, GOOSE, Sampled Values, SCD validation, comparison, reports and an IED simulator. Runs in the browser and is served by a small local Python program. Nothing to install apart from Python. 
+Windows .exe version in RELEASES. 
 
 [![PyPI](https://img.shields.io/pypi/v/ied-doctor)](https://pypi.org/project/ied-doctor/) ![Python](https://img.shields.io/pypi/pyversions/ied-doctor) ![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 
@@ -26,7 +26,7 @@ If the desktop window cannot be opened (no WebView2, no display, pywebview missi
 
 | | |
 |---|---|
-| Windows | double-click `start_windows.bat`, or `py run.py` |
+| Windows | Download pre-build .exe from [RELEASES](https://github.com/payomagic/IED-doctor/releases) | or double-click `start_windows.bat`, or `py run.py` |
 | Linux   | `./start_linux.sh` (uses sudo for raw sockets), or `sudo python3 run.py` |
 
 The browser opens at http://127.0.0.1:8061. Options: `--port 8061`, `--scd file.scd` (load at start), `--no-browser`, `--host 0.0.0.0` (expose the UI on the network; there is no login).
@@ -36,8 +36,10 @@ Requirements: Python 3.9 or newer, standard library only. A portable Python (for
 | Feature | Windows | Linux |
 |---|---|---|
 | MMS client, SCD, pcap files, reports | works out of the box | works out of the box |
-| Live GOOSE/SV capture, simulator publishing | needs [Npcap](https://npcap.com) | root or `sudo setcap cap_net_raw+ep $(readlink -f $(which python3))` |
 | Simulator MMS server on port 102 | works | root, or use another port |
+| VLAN checks via MMS, Signals published on GOOSE VLANs via MMS | works | works |
+| Read SCD file | works | works |
+| Live GOOSE/SV capture, simulator publishing | needs [Npcap](https://npcap.com) | root or `sudo setcap cap_net_raw+ep $(readlink -f $(which python3))` |
 
 ## What it does
 
