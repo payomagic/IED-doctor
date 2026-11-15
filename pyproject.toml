@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ied-doctor"
+dynamic = ["version"]
+description = "Read-only IEC 61850 MMS / GOOSE / SV inspection tool with SCD validation, VLAN checks, reports and an IED simulator"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Pavel Dvořák" }]
+keywords = ["IEC 61850", "MMS", "GOOSE", "sampled values", "SCD", "substation automation", "VLAN"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: System :: Networking :: Monitoring",
+]
+dependencies = []                   # standard library only
+
+[project.optional-dependencies]
+gui = ["pywebview>=5.0"]            # desktop window mode: pip install "ied-doctor[gui]"
+
+# Fill in after creating the repository, e.g. https://github.com/<user>/ied-doctor
+# [project.urls]
+# Homepage = "https://github.com/<user>/ied-doctor"
+# Issues = "https://github.com/<user>/ied-doctor/issues"
+
+[project.scripts]
+ied-doctor = "ied_doctor.app:main"
+
+[tool.setuptools]
+packages = ["ied_doctor", "ied_doctor.web", "ied_doctor.examples", "ied_doctor.assets"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"ied_doctor.web" = ["*.html"]
+"ied_doctor.examples" = ["*.scd"]
+"ied_doctor.assets" = ["*.png", "*.ico"]
+
+[tool.setuptools.dynamic]
+version = { attr = "ied_doctor.__version__" }
